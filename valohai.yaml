@@ -7,9 +7,5 @@
     name: train
     image: tensorflow/tensorflow:2.1.0-py3
     command: python train.py
-    inputs:
-        - name: x
-          default: {datum://0177b5dd-4ae7-154f-e10a-76bdeaa6902d}
-        - name: y
-          default: {datum://0177b5dd-4df2-0e45-9f1f-0e3931361602}
+ 
           
