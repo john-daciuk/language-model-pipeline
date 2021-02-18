@@ -9,6 +9,6 @@
     command: python train.py
     inputs:
         -name: data
-        default: {datum://0177b5fc-b9c7-1e98-a7c8-47799f100cec}
+        default: {datum://0177b5dd-4df2-0e45-9f1f-0e3931361602}
  
           
