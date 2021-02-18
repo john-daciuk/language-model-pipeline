@@ -7,6 +7,9 @@
     name: train
     image: tensorflow/tensorflow:2.1.0-py3
     command: python train.py
+    -inputs:
+        -name: mydata
+        default: {datum://0177b5ff-1a2f-b86f-5889-7cdc2682f80a}
    
  
           
