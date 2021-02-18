@@ -36,7 +36,7 @@ def main():
 
     
     OUTPUTS_DIR = os.getenv('VH_OUTPUTS_DIR', './outputs')
-    np.savez(os.path.join(OUTPUTS_DIR, 'data'), x=x, y=y)
+    np.savez(os.path.join(OUTPUTS_DIR, 'mydata/data'), x=x, y=y)
 
 
 if __name__ == '__main__':
