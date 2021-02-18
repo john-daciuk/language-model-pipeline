@@ -31,7 +31,12 @@ epochs = 40
 batch_size = 128
 
 def main():
-
+    
+    input_path = os.getenv('VH_INPUTS_DIR')
+    data_file_path = os.path.join(input_path, 'data.npz')
+    with numpy.load(data_file_path, allow_pickle=True) as f:
+        x, y = f['x'], f['y']
+    
     for epoch in range(epochs):
         model.fit(x, y, batch_size=batch_size, epochs=1)
         print()
