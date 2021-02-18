@@ -2,3 +2,8 @@
     name: prepare_data
     image: tensorflow/tensorflow:2.1.0-py3
     command: python prepare_data.py
+    
+- step:
+    name: train
+    image: tensorflow/tensorflow:2.1.0-py3
+    command: python train.py
