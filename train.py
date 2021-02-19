@@ -4,6 +4,7 @@ from tensorflow.keras import layers
 import numpy as np
 import random
 import os
+import pickle
 
 def sample(preds, temperature=1.0):
     # helper function to sample an index from a probability array
