@@ -36,7 +36,7 @@ def main():
         data = pickle.load(f)
     char_indices, indices_char, chars, maxlen = data['char_indices'], data['indices_char'], data['chars'], data['maxlen']
     arrs_path = os.path.join(input_path, 'data.npz')
-    with numpy.load(arrs_path, allow_pickle=True) as f:
+    with np.load(arrs_path, allow_pickle=True) as f:
         x, y = f['x'], f['y']
     
     model = build_model(maxlen, chars)
