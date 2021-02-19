@@ -5,7 +5,7 @@
     
 - step:
     name: train
-    image: tensorflow/tensorflow:2.1.0-py3
+    image: tensorflow/tensorflow:2.0.1-gpu-py3
     command: python train.py
     inputs:
       - name: arrs
