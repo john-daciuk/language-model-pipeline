@@ -34,19 +34,19 @@
 - pipeline:
     name: process_data-train-generate_language Pipeline
     nodes:
-    - name: prepare_data
-      type: execution
-      step: prepare_data
-    - name: train
-      type: execution
-      step: train
-      override:
-      inputs:
-      - name: arrs
-      - name: data
+      - name: prepare_data
+        type: execution
+        step: prepare_data
+      - name: train
+        type: execution
+        step: train
+        override:
+        inputs:
+          - name: arrs
+          - name: data
     edges:
-    - [prepare_data.output.*arrs*, train.input.arrs]
-    - [prepare_data.output.*data*, train.input.data]
+      - [prepare_data.output.*arrs*, train.input.arrs]
+      - [prepare_data.output.*data*, train.input.data]
 
    
  
