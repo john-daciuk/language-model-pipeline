@@ -14,15 +14,17 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 
-model = keras.Sequential(
-    [
-        keras.Input(shape=(maxlen, len(chars))),
-        layers.LSTM(128),
-        layers.Dense(len(chars), activation="softmax"),
-    ]
-)
-optimizer = keras.optimizers.RMSprop(learning_rate=0.01)
-model.compile(loss="categorical_crossentropy", optimizer=optimizer)
+def build_model(maxlen, chars):
+    model = keras.Sequential(
+        [
+            keras.Input(shape=(maxlen, len(chars))),
+            layers.LSTM(128),
+            layers.Dense(len(chars), activation="softmax"),
+        ]
+    )
+    optimizer = keras.optimizers.RMSprop(learning_rate=0.01)
+    model.compile(loss="categorical_crossentropy", optimizer=optimizer)
+    return model
 
 def main():
     epochs = 40
@@ -35,6 +37,8 @@ def main():
     arrs_path = os.path.join(input_path, 'data.npz')
     with numpy.load(arrs_path, allow_pickle=True) as f:
         x, y = f['x'], f['y']
+    
+    model = build_model(maxlen, chars)
     
     for epoch in range(epochs):
         model.fit(x, y, batch_size=batch_size, epochs=1)
