@@ -14,8 +14,8 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 
-maxlen = 40
-
+{'char_indices':char_indices, 'indices_char':indices_char, 'chars':chars, 'maxlen':maxlen}
+char_
 model = keras.Sequential(
     [
         keras.Input(shape=(maxlen, len(chars))),
@@ -26,16 +26,16 @@ model = keras.Sequential(
 optimizer = keras.optimizers.RMSprop(learning_rate=0.01)
 model.compile(loss="categorical_crossentropy", optimizer=optimizer)
 
-
-
-epochs = 40
-batch_size = 128
-
 def main():
-    
+    epochs = 40
+    batch_size = 128
     input_path = os.getenv('VH_INPUTS_DIR')
-    data_file_path = os.path.join(input_path, 'data.npz')
-    with numpy.load(data_file_path, allow_pickle=True) as f:
+    data_path = os.path.join(input_path, 'data.txt')
+    with open(data_path, "rb") as f: 
+        data = pickle.load(f)
+    char_indices, indices_char, chars, maxlen = data['char_indices'], data['indices_char'], data['chars'], data['maxlen']
+    arrs_path = os.path.join(input_path, 'data.npz')
+    with numpy.load(arrs_path, allow_pickle=True) as f:
         x, y = f['x'], f['y']
     
     for epoch in range(epochs):

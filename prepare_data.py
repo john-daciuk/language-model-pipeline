@@ -1,6 +1,7 @@
 from tensorflow import keras
 import io, os
 import numpy as np
+import pickle
 
 
 def main():
@@ -36,7 +37,10 @@ def main():
 
     
     OUTPUTS_DIR = os.getenv('VH_OUTPUTS_DIR', './outputs')
-    np.savez(os.path.join(OUTPUTS_DIR, 'mydata/data'), x=x, y=y)
+    np.savez(os.path.join(OUTPUTS_DIR, 'arrs'), x=x, y=y)
+    data = {'char_indices':char_indices, 'indices_char':indices_char, 'chars':chars, 'maxlen':maxlen}
+    with open(os.path.join(OUTPUTS_DIR, 'data.txt'), "wb") as f:
+        pickle.dump(data, f)
 
 
 if __name__ == '__main__':
