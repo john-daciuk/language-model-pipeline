@@ -41,9 +41,9 @@
         type: execution
         step: train
         override:
-        inputs:
-          - name: arrs
-          - name: data
+          inputs:
+            - name: arrs
+            - name: data
     edges:
       - [prepare_data.output.*arrs*, train.input.arrs]
       - [prepare_data.output.*data*, train.input.data]
