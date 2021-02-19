@@ -2,7 +2,12 @@ from tensorflow import keras
 import io, os
 import numpy as np
 import pickle
+import argparse
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--maxlen', type=int, default=40)
+    return parser.parse_args()
 
 def main():
     path = keras.utils.get_file(
@@ -19,7 +24,7 @@ def main():
     indices_char = dict((i, c) for i, c in enumerate(chars))
 
     # cut the text in semi-redundant sequences of maxlen characters
-    maxlen = 40
+    maxlen = args.maxlen
     step = 3
     sentences = []
     next_chars = []

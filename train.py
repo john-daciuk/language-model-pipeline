@@ -6,6 +6,13 @@ import random
 import os
 import pickle
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--batch_size', type=int, default=128)
+    parser.add_argument('--maxlen', type=int, default=40)
+    return parser.parse_args()
+
 def sample(preds, temperature=1.0):
     # helper function to sample an index from a probability array
     preds = np.asarray(preds).astype("float64")
@@ -28,32 +35,31 @@ def build_model(maxlen, chars):
     return model
 
 def main():
-    epochs = 20
-    batch_size = 128
+    args = parse_args()
     input_path = os.getenv('VH_INPUTS_DIR')
     data_path = os.path.join(input_path, 'data/data')
     with open(data_path, "rb") as f: 
         data = pickle.load(f)
-    char_indices, indices_char, chars, maxlen, text = data['char_indices'], data['indices_char'], data['chars'], data['maxlen'], data['text']
+    char_indices, indices_char, chars, text = data['char_indices'], data['indices_char'], data['chars'], data['text']
     arrs_path = os.path.join(input_path, 'arrs/arrs.npz')
     with np.load(arrs_path, allow_pickle=True) as f:
         x, y = f['x'], f['y']
     
-    model = build_model(maxlen, chars)
-    model.fit(x, y, batch_size=batch_size, epochs=epochs)
+    model = build_model(args.maxlen, chars)
+    model.fit(x, y, batch_size=args.batch_size, epochs=args.epochs)
     print()
-    print("Generating text after training for {} epochs:  ".format(epochs))
+    print("Generating text after training for {} epochs:  ".format(args.epochs))
 
-    start_index = random.randint(0, len(text) - maxlen - 1)
+    start_index = random.randint(0, len(text) - args.maxlen - 1)
     for diversity in [0.2, 0.5, 1.0, 1.2]:
         print("...Diversity:", diversity)
 
         generated = ""
-        sentence = text[start_index : start_index + maxlen]
+        sentence = text[start_index : start_index + args.maxlen]
         print('...Generating with seed: "' + sentence + '"')
 
         for i in range(400):
-            x_pred = np.zeros((1, maxlen, len(chars)))
+            x_pred = np.zeros((1, args.maxlen, len(chars)))
             for t, char in enumerate(sentence):
                 x_pred[0, t, char_indices[char]] = 1.0
             preds = model.predict(x_pred, verbose=0)[0]

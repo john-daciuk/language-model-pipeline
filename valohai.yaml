@@ -2,16 +2,35 @@
     name: prepare_data
     image: tensorflow/tensorflow:2.1.0-py3
     command: python prepare_data.py
+    parameters: 
+      - name: maxlen
+        pass-as: --maxlen={v}
+        type: float
+        default: 40
     
 - step:
     name: train
     image: tensorflow/tensorflow:2.0.1-gpu-py3
     command: python train.py
+    parameters: 
+      - name: maxlen
+        pass-as: --maxlen={v}
+        type: float
+        default: 40
+      - name: batch_size
+        pass-as: --batch_size={v}
+        type: float
+        default: 128
+      - name: epochs
+        pass-as: --epochs={v}
+        type: float
+        default: 5
     inputs:
       - name: arrs
         default: datum://0177b893-b578-fff0-ec4f-63c586493c92
       - name: data
         default: datum://0177b893-b7ae-fc7f-0d2e-e7f92459693c
+
    
  
           
