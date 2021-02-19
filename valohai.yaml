@@ -1,7 +1,7 @@
 - step:
     name: prepare_data
     image: tensorflow/tensorflow:2.1.0-py3
-    command: python prepare_data.py
+    command: python prepare_data.py {parameters}
     parameters: 
       - name: maxlen
         pass-as: --maxlen={v}
@@ -11,7 +11,7 @@
 - step:
     name: train
     image: tensorflow/tensorflow:2.0.1-gpu-py3
-    command: python train.py
+    command: python train.py {parameters}
     parameters: 
       - name: maxlen
         pass-as: --maxlen={v}
