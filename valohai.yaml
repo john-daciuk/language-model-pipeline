@@ -9,9 +9,9 @@
     command: python train.py
     inputs:
       - name: arrs
-        default: datum://0177b859-6b32-413d-e06b-a4ef987a2e7f
+        default: datum://0177b893-b578-fff0-ec4f-63c586493c92
       - name: data
-        default: datum://0177b86d-c898-c477-d21e-7394fbca7891
+        default: datum://0177b893-b7ae-fc7f-0d2e-e7f92459693c
    
  
           
