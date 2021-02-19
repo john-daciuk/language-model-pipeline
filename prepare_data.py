@@ -38,7 +38,7 @@ def main():
     
     OUTPUTS_DIR = os.getenv('VH_OUTPUTS_DIR', './outputs')
     np.savez(os.path.join(OUTPUTS_DIR, 'arrs'), x=x, y=y)
-    data = {'char_indices':char_indices, 'indices_char':indices_char, 'chars':chars, 'maxlen':maxlen}
+    data = {'char_indices':char_indices, 'indices_char':indices_char, 'chars':chars, 'maxlen':maxlen, 'text':text}
     with open(os.path.join(OUTPUTS_DIR, 'data'), "wb") as f:
         pickle.dump(data, f)
 

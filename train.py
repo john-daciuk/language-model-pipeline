@@ -34,7 +34,7 @@ def main():
     data_path = os.path.join(input_path, 'data/data.txt')
     with open(data_path, "rb") as f: 
         data = pickle.load(f)
-    char_indices, indices_char, chars, maxlen = data['char_indices'], data['indices_char'], data['chars'], data['maxlen']
+    char_indices, indices_char, chars, maxlen, text = data['char_indices'], data['indices_char'], data['chars'], data['maxlen'], data['text']
     arrs_path = os.path.join(input_path, 'arrs/arrs.npz')
     with np.load(arrs_path, allow_pickle=True) as f:
         x, y = f['x'], f['y']
