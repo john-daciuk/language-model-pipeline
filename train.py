@@ -29,6 +29,7 @@ model.compile(loss="categorical_crossentropy", optimizer=optimizer)
 
 epochs = 40
 batch_size = 128
+maxlen = 40
 
 def main():
     
