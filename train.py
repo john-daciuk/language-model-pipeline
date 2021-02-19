@@ -14,8 +14,6 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 
-{'char_indices':char_indices, 'indices_char':indices_char, 'chars':chars, 'maxlen':maxlen}
-char_
 model = keras.Sequential(
     [
         keras.Input(shape=(maxlen, len(chars))),
