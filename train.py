@@ -30,7 +30,7 @@ def main():
     epochs = 40
     batch_size = 128
     input_path = os.getenv('VH_INPUTS_DIR')
-    data_path = os.path.join(input_path, 'data')
+    data_path = os.path.join(input_path, 'data/data.txt')
     with open(data_path, "rb") as f: 
         data = pickle.load(f)
     char_indices, indices_char, chars, maxlen = data['char_indices'], data['indices_char'], data['chars'], data['maxlen']
