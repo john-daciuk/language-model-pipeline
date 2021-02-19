@@ -14,6 +14,7 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 
+maxlen = 40
 
 model = keras.Sequential(
     [
@@ -29,7 +30,6 @@ model.compile(loss="categorical_crossentropy", optimizer=optimizer)
 
 epochs = 40
 batch_size = 128
-maxlen = 40
 
 def main():
     
