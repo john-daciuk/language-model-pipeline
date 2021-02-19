@@ -46,7 +46,6 @@
             - name: data
     edges:
       - [prepare_data.output.*arrs*, train.input.arrs]
-      - [prepare_data.output.*data*, train.input.data]
 
    
  
