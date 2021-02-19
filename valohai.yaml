@@ -5,7 +5,7 @@
     parameters: 
       - name: maxlen
         pass-as: --maxlen={v}
-        type: int
+        type: integer
         default: 40
     
 - step:
@@ -15,15 +15,15 @@
     parameters: 
       - name: maxlen
         pass-as: --maxlen={v}
-        type: int
+        type: integer
         default: 40
       - name: batch_size
         pass-as: --batch_size={v}
-        type: int
+        type: integer
         default: 128
       - name: epochs
         pass-as: --epochs={v}
-        type: int
+        type: integer
         default: 5
     inputs:
       - name: arrs
