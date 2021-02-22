@@ -10,6 +10,7 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+    args = parse_args()
     path = keras.utils.get_file(
         "nietzsche.txt", origin="https://s3.amazonaws.com/text-datasets/nietzsche.txt"
     )
